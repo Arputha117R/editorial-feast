@@ -6,8 +6,8 @@ import { menuCategories } from "@/data/restaurant";
 import { cn } from "@/lib/utils";
 
 export function MenuPreview() {
-  const [active, setActive] = useState(menuCategories[0].id);
-  const category = menuCategories.find((c) => c.id === active) ?? menuCategories[0];
+  const [active, setActive] = useState<string>(menuCategories[0]!.id);
+  const category = menuCategories.find((c) => c.id === active) ?? menuCategories[0]!;
 
   return (
     <section id="menu" className="bg-cream py-24 sm:py-32 lg:py-40">
