@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Maren & Ash — Fire-Led Seasonal Dining" },
+      { title: "Tasty Street — Fire-Led Seasonal Dining" },
       {
         name: "description",
         content:
           "A wood-fired seasonal restaurant in Lisbon. Coastal produce, natural wine and a candlelit dining room.",
       },
-      { property: "og:title", content: "Maren & Ash — Fire-Led Seasonal Dining" },
+      { property: "og:title", content: "Tasty Street — Fire-Led Seasonal Dining" },
       {
         property: "og:description",
         content:

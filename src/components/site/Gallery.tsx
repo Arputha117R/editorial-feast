@@ -31,7 +31,7 @@ export function Gallery() {
                   loading="lazy"
                   width={1000}
                   height={1250}
-                  className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                  className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
               </div>
               <p className="mt-4 text-xs tracking-[0.16em] text-cream/50 uppercase">{image.alt}</p>

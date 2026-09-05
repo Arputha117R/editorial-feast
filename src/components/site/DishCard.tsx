@@ -15,7 +15,7 @@ export function DishCard({ dish }: { dish: Dish }) {
           loading="lazy"
           width={900}
           height={1100}
-          className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
+          className="size-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.12]"
         />
         {dish.tag && (
           <span className="absolute top-4 left-4 rounded-full bg-cream/90 px-3.5 py-1.5 text-[0.6rem] tracking-[0.2em] text-charcoal uppercase">

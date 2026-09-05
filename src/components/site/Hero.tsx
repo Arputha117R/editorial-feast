@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
+import { useReservation } from "./Reservation";
 import { images, restaurant } from "@/data/restaurant";
 
 const line = {

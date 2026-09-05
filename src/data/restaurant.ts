@@ -27,8 +27,11 @@ export const images = {
   gallery4,
 };
 
+export const special =
+  "Today's Special — Coal-Grilled Octopus with smoked paprika butter, €29 · Chef's counter seats from 19:00";
+
 export const restaurant = {
-  name: "Maren & Ash",
+  name: "Tasty Street",
   tagline: "Fire-led cooking, coastal produce",
   address: "42 Harbour Lane, Old Town Quarter",
   city: "Lisbon, Portugal",
@@ -162,6 +165,27 @@ export const menuCategories: MenuCategory[] = [
         name: "Olive Oil Cake",
         description: "Citrus syrup, rosemary sugar, mascarpone.",
         price: "€10",
+      },
+    ],
+  },
+  {
+    id: "fire-grill",
+    label: "Fire / Grill",
+    items: [
+      {
+        name: "Coal-Grilled Octopus",
+        description: "Smoked paprika butter, charred potatoes, salsa verde.",
+        price: "€29",
+      },
+      {
+        name: "Ember Ribeye",
+        description: "Dry-aged ribeye, bone marrow, grilled spring onion.",
+        price: "€38",
+      },
+      {
+        name: "Fire-Pit Vegetables",
+        description: "Seasonal vegetables from the embers, romesco, toasted seeds.",
+        price: "€18",
       },
     ],
   },
