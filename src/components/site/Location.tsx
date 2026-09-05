@@ -1,9 +1,11 @@
 import { Clock, MapPin, Phone } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { MagneticButton } from "./MagneticButton";
+import { useReservation } from "./Reservation";
 import { hours, restaurant } from "@/data/restaurant";
 
 export function Location() {
+  const openReservation = useReservation();
   return (
     <section id="visit" className="bg-olive py-24 sm:py-32 lg:py-40">
       <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12">
@@ -37,7 +39,13 @@ export function Location() {
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10">
-            <MagneticButton href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
+            <MagneticButton
+              href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+              onClick={(e) => {
+                e.preventDefault();
+                openReservation();
+              }}
+            >
               Reserve Table
             </MagneticButton>
           </Reveal>

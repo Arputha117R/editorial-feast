@@ -8,17 +8,19 @@ import { Gallery } from "@/components/site/Gallery";
 import { Reviews } from "@/components/site/Reviews";
 import { Location } from "@/components/site/Location";
 import { Footer } from "@/components/site/Footer";
+import { Ticker } from "@/components/site/Ticker";
+import { ReservationProvider } from "@/components/site/Reservation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Maren & Ash — Fire-Led Seasonal Dining in Lisbon" },
+      { title: "Tasty Street — Fire-Led Seasonal Dining in Lisbon" },
       {
         name: "description",
         content:
-          "Maren & Ash is a wood-fired seasonal restaurant in Lisbon's Old Town Quarter. Explore the menu, view the room and reserve a table.",
+          "Tasty Street is a wood-fired seasonal restaurant in Lisbon's Old Town Quarter. Explore the menu, view the room and reserve a table.",
       },
-      { property: "og:title", content: "Maren & Ash — Fire-Led Seasonal Dining in Lisbon" },
+      { property: "og:title", content: "Tasty Street — Fire-Led Seasonal Dining in Lisbon" },
       {
         property: "og:description",
         content:
@@ -33,7 +35,9 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="bg-cream">
+    <ReservationProvider>
+    <div className="bg-cream pt-9">
+      <Ticker />
       <Navbar />
       <main>
         <Hero />
@@ -46,5 +50,6 @@ function Index() {
       </main>
       <Footer />
     </div>
+    </ReservationProvider>
   );
 }

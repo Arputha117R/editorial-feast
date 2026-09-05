@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navLinks, restaurant } from "@/data/restaurant";
+import { useReservation } from "./Reservation";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const openReservation = useReservation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -18,7 +20,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-9 z-50 transition-all duration-500",
         scrolled ? "bg-cream/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.06)]" : "bg-transparent",
       )}
     >
@@ -53,12 +55,13 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#visit"
+          <button
+            type="button"
+            onClick={openReservation}
             className="hidden rounded-full bg-terracotta px-6 py-2.5 text-xs font-medium tracking-[0.16em] text-cream uppercase transition-colors hover:bg-terracotta/90 lg:inline-flex"
           >
             Reserve Table
-          </a>
+          </button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -98,13 +101,16 @@ export function Navbar() {
                 </li>
               ))}
               <li className="pt-4">
-                <a
-                  href="#visit"
-                  onClick={() => setOpen(false)}
-                  className="block rounded-full bg-terracotta px-6 py-3 text-center text-xs font-medium tracking-[0.16em] text-cream uppercase"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    openReservation();
+                  }}
+                  className="block w-full rounded-full bg-terracotta px-6 py-3 text-center text-xs font-medium tracking-[0.16em] text-cream uppercase"
                 >
                   Reserve Table
-                </a>
+                </button>
               </li>
             </ul>
           </motion.div>

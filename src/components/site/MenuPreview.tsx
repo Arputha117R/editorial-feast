@@ -2,12 +2,26 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { SectionHeading } from "./SectionHeading";
 import { MagneticButton } from "./MagneticButton";
+import { useReservation } from "./Reservation";
 import { menuCategories } from "@/data/restaurant";
 import { cn } from "@/lib/utils";
 
+const tabIds = ["all", "starters", "mains", "fire-grill", "desserts"];
+const tabs = [
+  { id: "all", label: "All" },
+  ...menuCategories.filter((c) => tabIds.includes(c.id)),
+];
+
+type MenuItem = { name: string; description: string; price: string };
+
 export function MenuPreview() {
-  const [active, setActive] = useState<string>(menuCategories[0]!.id);
-  const category = menuCategories.find((c) => c.id === active) ?? menuCategories[0]!;
+  const [active, setActive] = useState<string>("all");
+  const openReservation = useReservation();
+
+  const items: MenuItem[] =
+    active === "all"
+      ? menuCategories.flatMap((c) => c.items)
+      : (menuCategories.find((c) => c.id === active)?.items ?? []);
 
   return (
     <section id="menu" className="bg-cream py-24 sm:py-32 lg:py-40">
@@ -23,13 +37,13 @@ export function MenuPreview() {
           aria-label="Menu categories"
           className="mt-12 flex flex-wrap justify-center gap-2 sm:gap-3"
         >
-          {menuCategories.map((c) => (
+          {tabs.map((c) => (
             <button
               key={c.id}
               role="tab"
               type="button"
               aria-selected={active === c.id}
-              aria-controls={`panel-${c.id}`}
+              aria-controls="menu-panel"
               id={`tab-${c.id}`}
               onClick={() => setActive(c.id)}
               className={cn(
@@ -52,17 +66,17 @@ export function MenuPreview() {
         <div className="mt-14 min-h-[22rem]">
           <AnimatePresence mode="wait">
             <motion.ul
-              key={category.id}
-              id={`panel-${category.id}`}
+              key={active}
+              id="menu-panel"
               role="tabpanel"
-              aria-labelledby={`tab-${category.id}`}
+              aria-labelledby={`tab-${active}`}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="divide-y divide-charcoal/10"
             >
-              {category.items.map((item) => (
+              {items.map((item) => (
                 <li
                   key={item.name}
                   className="flex flex-col gap-1.5 py-6 sm:flex-row sm:items-baseline sm:gap-6"
@@ -81,7 +95,15 @@ export function MenuPreview() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <MagneticButton href="#visit">Reserve Table</MagneticButton>
+          <MagneticButton
+            href="#visit"
+            onClick={(e) => {
+              e.preventDefault();
+              openReservation();
+            }}
+          >
+            Reserve Table
+          </MagneticButton>
         </div>
       </div>
     </section>

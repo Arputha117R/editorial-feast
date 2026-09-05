@@ -9,6 +9,7 @@ type MagneticButtonProps = {
   className?: string;
   variant?: "solid" | "outline";
   ariaLabel?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 };
 
 /** Primary CTA. Magnetic pull is desktop-only and disabled for touch users. */
@@ -18,6 +19,7 @@ export function MagneticButton({
   className,
   variant = "solid",
   ariaLabel,
+  onClick,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const isMobile = useIsMobile();
@@ -43,6 +45,7 @@ export function MagneticButton({
       ref={ref}
       href={href}
       aria-label={ariaLabel}
+      onClick={onClick}
       onMouseMove={handleMove}
       onMouseLeave={reset}
       style={{ x: sx, y: sy }}
